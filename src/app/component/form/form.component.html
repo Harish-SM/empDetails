@@ -1,0 +1,205 @@
+
+
+<form class="col formGroup" [formGroup]="employeeForm" #f="ngForm" (ngSubmit)="submit()">
+    <div class="header">
+        <h3>Employee-Details</h3>
+    </div>
+    <div header="Employee-Details" class="container" [style]="{width: '500px'}">
+        <div class="card card-1">
+                <div class="column">
+                    <label for="firstName">Name:</label><br>
+                    <input type="text" pInputText formControlName="firstName" class="w-small" name="firstName" placeholder="Type your name"/>
+                    <small *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="block p-error">
+                        <div *ngIf="firstName.errors?.['required']">Name is required</div>
+                        <div *ngIf="firstName.errors?.['pattern']">Enter a valid name</div>
+                    </small>
+                </div><br>
+                <div class="col">
+                    <label for="">Mobile-No:</label><br>
+                    <input type="number" pInputText formControlName="mobileNumber" class="w-full" placeholder="Enter mobile number"/>
+                    <small *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)" class="block p-error">
+                        <div *ngIf="mobileNumber.errors?.['required']">Mobile number is required</div>
+                        <div *ngIf="mobileNumber.errors?.['pattern']">Please Enter 10 digit Mobile no</div>
+                    </small>
+                </div><br>
+                <div class="col">
+                    <label for="">Email:</label><br>
+                    <input type="text" pInputText formControlName="email" class="w-full" placeholder="Enter email"/>
+                    <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Email should be valid</div>
+                    </small>
+                </div><br>
+                <div class="col">
+                    <label for="">Gender:</label><br>
+                    <p-dropdown [options]="gender" formControlName="gender"  optionLabel="gndr" placeholder="Select Gender"></p-dropdown>
+                        
+                </div><br>
+                <div class="col">
+                    <label for="">Location:</label>
+                    <!-- <input type="text" pInputText formControlName="number" class="w-full" placeholder="Enter designation"/> -->
+                    <p-multiSelect [options]="cities" formControlName="location" [(ngModel)]="selectedCities" defaultLabel="Select a city"  optionLabel="name" ></p-multiSelect>
+                </div><br>
+        </div>    
+        <div class="card card-2">
+               <div class="col">
+                    <label for="">Designation:</label><br>
+                    <p-dropdown [options]="design" formControlName="designation" [(ngModel)]="selectedDesignation" defaultLabel="Select designation"  optionLabel="name" placeholder="Select Designation" ></p-dropdown>
+                </div><br>
+                <div class="col">
+                    <label for="">Address:</label><br>
+                    <input type="text" pInputText formControlName="address" class="w-full" placeholder="Enter address"/>
+                </div><br>
+                <div class="col">
+                    <label for="">Locality:</label><br>
+                    <input type="text" pInputText formControlName="locality" class="w-full" placeholder="Enter locality"/>
+                </div><br>
+                <div class="col">
+                    <label for="">State:</label><br>
+                    <input type="text" pInputText formControlName="state" class="w-full" placeholder="Enter state"/>
+                </div><br>
+                <div class="col">
+                    <label for="">Pincode:</label><br>
+                    <input type="number" pInputText formControlName="pincode" class="w-full" placeholder="Enter pincode"/>
+                    <small *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)" class="block p-error">
+                        <div *ngIf="pincode.errors?.['required']">Pincode is required</div>
+                        <div *ngIf="pincode.errors?.['pattern']">Please Enter 6 digit pincode</div>
+                    </small>
+                </div><br>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="btn btn-success" [disabled]="" type="submit">Add Employee</button>
+    </div>
+</form>
+
+<!-- table content -->
+
+<p-table class="table-form" [value]="empTableData" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="caption">
+        <p-multiSelect  optionLabel="header"
+            selectedItemsLabel="{0} columns selected" [style]="{'min-width': '200px'}" placeholder="Choose Columns"></p-multiSelect>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SNo</th>
+            <th>Name</th>
+            <th>Mobile-No</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Location</th>
+            <th>Designation</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empTableData let-rowIndex="rowIndex">
+        <tbody>
+            <td>{{rowIndex + 1}}</td>
+            <td>{{empTableData.firstName}}</td>
+            <td>{{empTableData.mobileNumber}}</td>
+            <td>{{empTableData.email}}</td>
+            <td>{{empTableData.gender}}</td>
+            <td>{{empTableData.location}}</td>
+            <td>{{empTableData.designation}}</td>
+            <td>{{empTableData.address}}</td>
+           
+            <td>
+                <button class=" btn btn-success">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+            </td>
+        </tbody>
+    </ng-template>
+</p-table>
+
+
+
+
+
+
+
+
+
+
+<!-- <label></label>
+<input type="checkbox" [(ngModel)]="isChecked" (change)="onCheckboxChange($event)" value="male">_Male
+<label></label>
+<input type="checkbox" (change)="onCheckboxChange($event)" value="female">_Female -->
+
+
+<!-- city-dropdown.component.html -->
+<!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="cityDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select Cities
+    </button>
+    <div class="dropdown-menu" aria-labelledby="cityDropdown">
+    <button *ngFor="let city of cities" class="dropdown-item" type="button" (click)="toggleCity(city.id)">
+        {{ city.name }}
+        <span *ngIf="isSelected(city.id)" class="float-right">&check;</span>
+    </button>
+    </div>
+</div>            
+<p>Selected Cities: {{ getSelectedCityNames() }}</p>   -->
+
+
+
+
+
+<!-- <div class="container">
+   <div class="row">
+    <div class="col">
+    <div class="header">
+        <h1>Employee Details Form</h1>
+    </div>
+    <div class="body">
+        <h3>Employee Details</h3>
+        <span>Name:</span>
+        <input type="text">
+        <label for=""></label>
+
+        <span>Mobile-No:</span>
+        <input type="text">
+        <label for=""></label>
+    </div>
+    <div class="body">
+        <span>Gender:</span>
+        <input type="text" name="" id="">
+        <label for=""></label>
+
+        <span>Email:</span>
+        <input type="text">
+        <label for=""></label>
+
+        <span>Designation:</span>
+        <input type="text" name="" id="">
+        <label for=""></label>
+    </div>
+    <div>
+    <div class="adress-bar">
+        <h4>Address:</h4>
+        <span>House-No:</span>
+        <label for=""></label>
+        <input type="text" name="" id="">
+
+        <span>Street:</span>
+        <label for=""></label>
+        <input type="text" name="" id="">
+
+        <span>District:</span>
+        <label for=""></label>
+        <input type="text" name="" id="">
+
+        <span>Pincode:</span>
+        <label for=""></label>
+        <input type="text" name="" id="">
+    </div>
+    <div class="footer">
+        <button class="btn btn-primary">Submit</button>
+    </div>
+</div>
+</div> -->
+
+
+<!-- <small *ngIf="designation.invalid && (designation.dirty || designation.touched)" class="block p-error">
+    <div *ngIf="designation.errors?.['required']">Please Select</div>
+</small> -->

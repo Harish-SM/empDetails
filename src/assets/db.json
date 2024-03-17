@@ -1,0 +1,68 @@
+{
+  "employees": [
+    {
+      "id": "aed0",
+      "firstName": "Harish",
+      "mobileNumber": 1234567890,
+      "email": "haris@gj",
+      "designation": {
+        "name": "Sr.Developer",
+        "code": "Sr.Dev"
+      },
+      "gender": {
+        "gndr": "Male",
+        "code": "M"
+      },
+      "location": [
+        {
+          "name": "Bangalore",
+          "code": "BNG"
+        },
+        {
+          "name": "Chennai",
+          "code": "CN"
+        },
+        {
+          "name": "Hyderabad",
+          "code": "HYD"
+        },
+        {
+          "name": "Mumbai",
+          "code": "MUM"
+        },
+        {
+          "name": "Vizag",
+          "code": "VIZ"
+        }
+      ],
+      "address": "harish adda",
+      "locality": "ajfhk",
+      "state": "tg",
+      "pincode": 345123
+    },
+    {
+      "id": "ffe4",
+      "firstName": "Nihal",
+      "mobileNumber": 1114441114,
+      "email": "nihal@gmail.com",
+      "designation": {
+        "name": "Sr.Developer",
+        "code": "Sr.Dev"
+      },
+      "gender": {
+        "gndr": "Male",
+        "code": "M"
+      },
+      "location": [
+        {
+          "name": "Hyderabad",
+          "code": "HYD"
+        }
+      ],
+      "address": "Sec",
+      "locality": "Sec",
+      "state": "TG",
+      "pincode": 123456
+    }
+  ]
+}
